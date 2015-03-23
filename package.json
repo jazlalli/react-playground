@@ -30,9 +30,12 @@
   },
   "devDependencies": {},
   "scripts": {
-    "js": "watchify -t reactify components/Routes.js -d components/Routes.js -o public/js/bundle.js -v",
-    "sass": "sass --watch sass:public/css",
-    "build": "parallelshell 'npm run js' 'npm run sass'",
+    "build-js": "browserify -t reactify components/Routes.js > public/js/bundle.js",
+    "build-sass": "sass sass/style.scss > public/css/style.css",
+    "build": "npm run build-js && npm run build-sass",
+    "watch-js": "watchify -t reactify components/Routes.js -d components/Routes.js -o public/js/bundle.js -v",
+    "watch-sass": "sass --watch sass:public/css",
+    "watch": "parallelshell 'npm run watch-js' 'npm run watch-sass'",
     "test": "npm run test",
     "start": "nodemon index.js"
   },
