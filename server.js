@@ -1,10 +1,10 @@
 require('node-jsx').install();
 
 var express = require('express'),
-		serveStatic = require('serve-static'),
-		bodyParser = require('body-parser'),
-		morgan = require('morgan'),
-		app = express();
+    serveStatic = require('serve-static'),
+    bodyParser = require('body-parser'),
+    morgan = require('morgan'),
+    app = express();
 
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
