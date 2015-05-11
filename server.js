@@ -8,14 +8,13 @@ var express = require('express'),
 
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
-
 app.use(serveStatic(__dirname + '/public'));
-
 app.use(morgan('tiny'));
+
+app.use('/api', require('./routes/api'));
 
 var router = express.Router();
 require('./routes/appRouter')(router);
-
 app.use(router);
 
 module.exports = app;

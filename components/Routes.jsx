@@ -5,9 +5,9 @@ var Router = require('react-router');
 var Route = Router.Route;
 var DefaultRoute = Router.DefaultRoute;
 
-var App = require('./App.js');
-var Whisky = require('./Whisky.js');
-var Map = require('./Map.js');
+var App = require('./App.jsx');
+var Whisky = require('./Whisky.jsx');
+var Map = require('./Map.jsx');
 
 var routes = (
   <Route name="app" path="/" handler={App}>

@@ -25,19 +25,19 @@
     "react": "^0.13.1",
     "react-router": "^0.13.1",
     "reactify": "^1.1.0",
+    "request": "^2.55.0",
     "serve-static": "^1.9.2",
     "watchify": "^2.6.0"
   },
   "devDependencies": {},
   "scripts": {
-    "build-js": "browserify -t reactify components/Routes.js > public/js/bundle.js",
+    "build-js": "browserify components/Routes.jsx -t reactify -o public/js/bundle.js -v",
     "build-sass": "sass sass/style.scss > public/css/style.css",
-    "build": "npm run build-js && npm run build-sass",
-    "watch-js": "watchify -t reactify components/Routes.js -d components/Routes.js -o public/js/bundle.js -v",
+    "build": "npm run build-js & npm run build-sass",
+    "watch-js": "watchify components/Routes.jsx -t reactify -o public/js/bundle.js -v",
     "watch-sass": "sass --watch sass:public/css",
-    "watch": "parallelshell 'npm run watch-js' 'npm run watch-sass'",
-    "test": "npm run test",
-    "start": "nodemon index.js"
+    "watch": "npm run watch-js & npm run watch-sass",
+    "start": "neo4j start & npm run watch & nodemon index.js"
   },
   "author": "Jaz Lalli",
   "license": "MIT"

@@ -16,7 +16,7 @@ var Header = React.createClass({
       <header>
         <h1>{this.state.server ? 'This is the server rendering' : 'Now the app has fully loaded'}</h1>
         <ul>
-          <li><Link to="whisky">Whiskies</Link></li>
+          <li><Link to="whisky">Things</Link></li>
           <li><Link to="map">Map</Link></li>
         </ul>
       </header>

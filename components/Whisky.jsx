@@ -8,7 +8,7 @@ var Whisky = React.createClass({
   render: function () {
     return (
       <section>
-        <h1>Whiskies</h1>
+        <h1>Things</h1>
         <ul>
           <li>A thing</li>
           <li>A thing</li>

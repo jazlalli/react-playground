@@ -1,6 +1,6 @@
 var React = require('react'),
     Router = require('react-router'),
-    routes = require('../components/Routes.js');
+    routes = require('../components/Routes.jsx');
 
 var routeHandler = function routeHandler(req, res, next) {
   Router.run(routes, req.path, function (Handler, state) {
