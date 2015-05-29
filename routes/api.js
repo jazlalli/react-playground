@@ -5,6 +5,9 @@ var regions = require('../lib/controllers/regions');
 router.route('/whisky')
   .get(whisky.all);
 
+router.route('/whisky/:whisky')
+  .get(whisky.get);
+
 router.route('/whisky/like/:whisky')
   .get(whisky.like);
 
