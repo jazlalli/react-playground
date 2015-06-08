@@ -6,22 +6,13 @@ var RouteHandler = Router.RouteHandler;
 var Header = require('./Header.jsx');
 
 var App = React.createClass({
+
   render: function () {
     return (
-      <html>
-        <head>
-          <title>React init</title>
-          <link href="css/style.css" media="screen" rel="stylesheet" type="text/css" />
-        </head>
-        <body>
-          <div>
-            <Header />
-
-            <RouteHandler/>
-          </div>
-        </body>
-        <script src="js/bundle.js"></script>
-      </html>
+      <div>
+        <Header />
+        <RouteHandler/>
+      </div>
     );
   }
 });

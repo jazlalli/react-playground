@@ -47,7 +47,6 @@ function getWhisky (whisky, callback) {
       return callback(err);
     }
 
-    console.log(res);
     callback(null, mapData(res.results));
   });
 }
@@ -66,7 +65,6 @@ function getAllLike (whisky, callback) {
       return callback(err);
     }
 
-    console.log('>>>>', res);
     callback(null, mapData(res.results));
   });
 }
@@ -84,7 +82,12 @@ function getRegions (callback) {
 }
 
 function getAllInRegion (region, callback) {
-  var query = "MATCH (:Region{name: {region} })<-[:LOCATED_IN]-()<-[:PRODUCED_IN]-(whisky:Whisky) RETURN distinct(whisky);";
+  var query = [
+    "MATCH (n:Region)<-[:LOCATED_IN]-()<-[:PRODUCED_IN]-(whisky:Whisky)",
+    "WHERE n.name =~ '(?i)" + region + "'",
+    "RETURN distinct(whisky);"
+  ].join('\n');
+
   var params = {region: region};
 
   db(query, params, function (err, res) {

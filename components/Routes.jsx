@@ -18,7 +18,7 @@ var routes = (
 
 if (typeof window !== "undefined") {
   Router.run(routes, Router.HistoryLocation, function (Handler) {
-    React.render(<Handler />, document);
+    React.render(<Handler />, document.getElementById('content'));
   });
 } else {
   module.exports = routes;
