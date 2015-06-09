@@ -5,7 +5,6 @@ var EventEmitter = require('eventemitter').EventEmitter;
 var whiskies = [];
 
 if (typeof window !== 'undefined') {
-  console.log('setting store');
   whiskies = window.whiskies;
 }
 

@@ -32,3 +32,6 @@ node_modules
 
 # built output
 public
+
+# data files
+flavours.json
