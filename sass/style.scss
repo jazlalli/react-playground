@@ -1,5 +1,19 @@
-html, body {
-  margin: none;
-  padding: none;
-  color: #333;
-}
+// SHARED
+// ===================================================
+// VARIABLES: Colours, Type sizes etc.
+@import "shared/_variables.scss";
+
+// NORMALIZE v3.0.0: Normalise across browsers
+@import "shared/_normalize.scss";
+
+// FONTS: @font-face
+@import "shared/_fonts.scss";
+
+// LAYOUT: Base layout, Grid
+@import "shared/_layout.scss";
+
+// TYPOGRAPHY: Headings, Hierarchy etc.
+@import "shared/_typography.scss";
+
+// ELEMENTS: Links, Buttons, Forms, Lists etc.
+@import "shared/_elements.scss";

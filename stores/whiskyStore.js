@@ -14,7 +14,14 @@ var whiskyStore = assign({}, EventEmitter.prototype, {
 
   getAll: function getAll() {
     return this._whiskies;
+  },
+
+  get: function get(name) {
+    return this._whiskies.filter(function (item, idx) {
+      return item.name.toLowerCase() === name;
+    })[0];
   }
+
 });
 
 module.exports = whiskyStore;

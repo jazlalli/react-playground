@@ -16,8 +16,10 @@
   "dependencies": {
     "body-parser": "^1.12.2",
     "browserify": "^9.0.3",
+    "chart.js": "^1.0.2",
     "eventemitter": "^0.3.3",
     "express": "^4.12.3",
+    "jsdom": "^3.1.2",
     "jsx": "^0.9.89",
     "morgan": "^1.5.2",
     "node-jsx": "^0.12.4",
@@ -25,6 +27,7 @@
     "object-assign": "^3.0.0",
     "parallelshell": "^1.1.1",
     "react": "^0.13.1",
+    "react-chartjs-commonjs": "0.0.3",
     "react-router": "^0.13.1",
     "reactify": "^1.1.0",
     "request": "^2.55.0",

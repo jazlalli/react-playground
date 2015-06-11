@@ -28,7 +28,7 @@ var mapData = function mapdata (results) {
 }
 
 function getAll (callback) {
-  var query = "MATCH (n:Whisky) RETURN n;"
+  var query = "MATCH (n:Whisky)-[:HAS_FLAVOURS]->(f:Flavour) RETURN n, f;"
 
   db(query, {}, function (err, res) {
     if (err) {

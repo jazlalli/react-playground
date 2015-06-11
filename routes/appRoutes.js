@@ -7,6 +7,8 @@ var React = require('react'),
 
 var routeHandler = function routeHandler(req, res, next) {
 
+  // use req.path and req.method to create appropriate action
+
   whiskyController.getAll(function (err, result) {
     whiskyStore._whiskies = result.data;
 

@@ -13,13 +13,13 @@ var Header = React.createClass({
   },
   render: function () {
     return (
-      <header>
+      <nav>
         <h1>{this.state.server ? 'This is the server rendering' : 'Now the app has fully loaded'}</h1>
         <ul>
-          <li><Link to="whisky">Whiskies</Link></li>
+          <li><Link to="whiskies">Whiskies</Link></li>
           <li><Link to="map">Regions</Link></li>
         </ul>
-      </header>
+      </nav>
     );
   }
 });

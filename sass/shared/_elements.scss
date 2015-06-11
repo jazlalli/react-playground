@@ -1,0 +1,94 @@
+//===============================================================================
+// ELEMENTS
+//===============================================================================
+// SELECTION
+::selection {
+  background: rgba(darken($ink, 20), 0.3);
+}
+
+// LINKS
+a {
+  color: $ink;
+  text-decoration: none;
+
+  &:hover, &.hover {
+    cursor: pointer;
+    color: lighten($ink, 10);
+  }
+
+  &:active, &.active {
+    color: darken($ink, 10);
+  }
+
+  &.visited {
+    color: darken($ink, 15);
+  }
+}
+
+// BUTTONS
+.btn, button {
+  margin-bottom: 0;
+  border: none;
+  border-radius: 0;
+  background: none;
+  -webkit-appearance: none;
+
+  &:focus {
+    outline: none;
+  }
+}
+
+// INPUT, TEXTAREA
+input, textarea {
+  padding: 10px;
+  display: block;
+  -webkit-appearance: none;
+  border-radius: 0;
+
+  &:focus{
+    outline: none;
+  }
+}
+
+// IMAGES
+img {
+  max-width: 100%;
+}
+
+// LISTS
+ol {
+  padding-left: 1.4em;
+
+  ol, ol ol {
+    margin-bottom: 0;
+  }
+}
+
+ul {
+  padding: 0;
+  list-style: none;
+
+  ul, ul ul {
+    margin-bottom: 0;
+  }
+}
+
+dt {
+  font-weight: $bold;
+}
+
+dd {
+  margin-left: 1.4em;
+}
+
+nav {
+  ul {
+    height: 60px;
+    list-style: none;
+
+    li {
+      margin: 10px 20px 10px 3px;
+      float: left;
+    }
+  }
+}

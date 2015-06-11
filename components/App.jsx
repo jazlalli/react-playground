@@ -9,9 +9,9 @@ var App = React.createClass({
 
   render: function () {
     return (
-      <div>
+      <div className="col-1-1">
         <Header />
-        <RouteHandler/>
+        <RouteHandler />
       </div>
     );
   }

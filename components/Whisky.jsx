@@ -3,6 +3,8 @@
 var React = require('react');
 var Router = require('react-router');
 var RouteHandler = Router.RouteHandler;
+var WhiskyDetail = require('./WhiskyDetail.jsx');
+var Link = Router.Link;
 
 var whiskyStore = require('../stores/whiskyStore');
 
@@ -26,7 +28,7 @@ var Whisky = React.createClass({
       this.state.whiskies.forEach(function (w) {
         Whiskies.push(
           <li key={w.name}>
-            <span>{w.name}</span>
+            <Link to='whisky' params={{whisky: w.name.toLowerCase()}}>{w.name}</Link>
           </li>
         );
       });
@@ -34,13 +36,13 @@ var Whisky = React.createClass({
 
     return (
       <section>
-        <RouteHandler/>
-
-        <h1>Whiskies</h1>
-        <ul>
-          { Whiskies }
-        </ul>
-
+        <div className="col-1-4">
+          <h3>Whiskies</h3>
+          <ul>
+            { Whiskies }
+          </ul>
+        </div>
+        <RouteHandler />
       </section>
     );
   }
