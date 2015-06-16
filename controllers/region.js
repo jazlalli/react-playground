@@ -1,6 +1,6 @@
 var db = require('../data/db');
 
-exports.all = function (callback) {
+exports.getAll = function getAll(callback) {
   db.getWhiskyRegions(function (err, regions) {
     if (err) {
       return callback(err);

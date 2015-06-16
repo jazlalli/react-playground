@@ -11,15 +11,16 @@ var globalOptions = {
   scaleOverride : true,
   //** Required if scaleOverride is true **
   //Number - The number of steps in a hard coded scale
-  scaleSteps : 4,
+  scaleSteps : 5,
   //Number - The value jump in the hard coded scale
   scaleStepWidth : 1,
+  scaleBeginAtZero: false,
   //Number - The centre starting value
-  scaleStartValue : 0,
+  scaleStartValue : -1,
   //Boolean - Whether to show lines for each scale point
   scaleShowLine : true,
   //String - Colour of the scale line
-  scaleLineColor : "#ccc",
+  scaleLineColor : "rgba(136,136,136,0.5)",
   //Number - Pixel width of the scale line
   scaleLineWidth : 1,
   //Boolean - Whether to show labels on the scale
@@ -27,9 +28,9 @@ var globalOptions = {
   //Interpolated JS string - can access value
   scaleLabel : "<%=value%>",
   //String - Scale label font declaration for the scale label
-  scaleFontFamily : "'Arial'",
+  scaleFontFamily : "'adobe-caslon-pro'",
   //Number - Scale label font size in pixels
-  scaleFontSize : 14,
+  scaleFontSize : 12,
   //String - Scale label font weight style
   scaleFontStyle : "normal",
   //String - Scale label font colour
@@ -43,29 +44,29 @@ var globalOptions = {
   //Number - The backdrop padding to the side of the label in pixels
   scaleBackdropPaddingX : 2,
   //Boolean - Whether we show the angle lines out of the radar
-  angleShowLineOut : false,
+  angleShowLineOut : true,
   //String - Colour of the angle line
-  angleLineColor : "rgba(255,255,255,0.3)",
+  angleLineColor : "rgba(221,221,221,0.5)",
   //Number - Pixel width of the angle line
   angleLineWidth : 1,
   //String - Point label font declaration
-  pointLabelFontFamily : "'Arial'",
+  pointLabelFontFamily : "'adobe-caslon-pro'",
   //String - Point label font weight
   pointLabelFontStyle : "normal",
   //Number - Point label font size in pixels
-  pointLabelFontSize : 14,
+  // pointLabelFontSize : 16,
   //String - Point label font colour
   pointLabelFontColor : "#555",
   //Boolean - Whether to show a dot for each point
   pointDot : true,
   //Number - Radius of each point dot in pixels
-  pointDotRadius : 2,
+  pointDotRadius : 3,
   //Number - Pixel width of point dot stroke
   pointDotStrokeWidth : 1,
   //Boolean - Whether to show a stroke for datasets
   datasetStroke : true,
   //Number - Pixel width of dataset stroke
-  datasetStrokeWidth : 1,
+  datasetStrokeWidth : 2,
   //Boolean - Whether to fill the dataset with a colour
   datasetFill : true,
   //Boolean - Whether to animate the chart
@@ -101,15 +102,11 @@ var FlavourGraph = React.createClass({
       ]
     };
 
-    if (typeof window !== 'undefined') {
-      return (
-        <ReactChart.Radar data={graphData} options={globalOptions} className="chart" height="350" />
-      )
-    } else {
-      return (
-        <p>{ graphData.datasets[0].data.join(', ') }</p>
-      )
-    }
+    return (
+      <div className="profile-chart-container">
+        <ReactChart.Radar data={graphData} options={globalOptions} className="chart" width="500px" height="500px" />
+      </div>
+    )
   }
 
 });

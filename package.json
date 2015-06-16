@@ -38,10 +38,11 @@
   "scripts": {
     "build-js": "browserify components/Routes.jsx -t reactify -o public/js/bundle.js -v",
     "build-sass": "sass sass/style.scss > public/css/style.css",
-    "build": "npm run build-js & npm run build-sass",
+    "build": "npm run build-js && npm run build-sass",
     "watch-js": "watchify components/Routes.jsx -t reactify -o public/js/bundle.js -v",
     "watch-sass": "sass --watch sass:public/css",
-    "watch": "npm run watch-js & npm run watch-sass"
+    "watch": "npm run build && parallelshell 'npm run watch-js' 'npm run watch-sass'",
+    "start": "nodemon index.js"
   },
   "author": "Jaz Lalli",
   "license": "MIT"

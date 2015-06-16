@@ -1,5 +1,5 @@
 var whisky = require('../controllers/whisky');
-var regions = require('../controllers/regions');
+var region = require('../controllers/region');
 
 module.exports = function (router) {
   router.route('/')
@@ -44,9 +44,9 @@ module.exports = function (router) {
       });
     });
 
-  router.route('/regions')
+  router.route('/region')
     .get(function (req, res, next) {
-      regions.all(function (err, result) {
+      region.getAll(function (err, result) {
         if (err) {
           return res.json({status: 500, message: err.message});
         }

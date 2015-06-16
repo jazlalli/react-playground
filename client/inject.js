@@ -1,7 +1,7 @@
 var fs = require('fs');
 var response = '';
 
-module.exports = function (contentString, dataString, callback) {
+module.exports = function (contentString, path, dataString, callback) {
 
   fs.readFile(__dirname + '/app.html', function (err, html) {
     if (err) {
@@ -10,7 +10,14 @@ module.exports = function (contentString, dataString, callback) {
 
     response = html.toString();
     response = response.replace(/#content/ig, contentString);
-    response = response.replace(/#data/ig, dataString);
+
+    if (path === '/whisky') {
+      response = response.replace(/\'#whiskies\'/ig, dataString);
+    }
+
+    if (path === '/region') {
+      response = response.replace(/\'#regions\'/ig, dataString);
+    }
 
     callback(null, response);
   });

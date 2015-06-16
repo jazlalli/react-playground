@@ -1,0 +1,29 @@
+nav {
+  position: fixed;
+  top: 0;
+  width: 10%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+
+  ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    line-height: 2.5em;
+
+    li {
+      margin: 0;
+      text-align: center;
+      background-color: #fff;
+
+      a {
+        display: block;
+      }
+
+      &:hover, .active {
+        background-color: #eee;
+      }
+    }
+  }
+}

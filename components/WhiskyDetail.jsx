@@ -1,17 +1,18 @@
 /** @jsx React.DOM */
 
 var React = require('react');
-var Router = require('react-router');
 var FlavourGraph = require('./FlavourGraph.jsx');
 
 var whiskyStore = require('../stores/whiskyStore');
 
 var WhiskyDetail = React.createClass({
 
-  mixins: [Router.State],
+  contextTypes: {
+    router: React.PropTypes.func.isRequired
+  },
 
   render: function () {
-    var params = this.getParams();
+    var params = this.context.router.getCurrentParams();
     var whisky = whiskyStore.get(params.whisky);
 
     var flavourKeys = [
@@ -38,12 +39,16 @@ var WhiskyDetail = React.createClass({
     }
 
     return (
-      <div className="col-2-3">
-        <h3>{ whisky.name }</h3>
-        <p>{ whisky.description }</p>
+      <div className="col-2-3 detail-container">
+        <div className="content">
+          <h3>{ whisky.name }</h3>
+          <p>{ whisky.description }</p>
+        </div>
 
-        <h4>Profile</h4>
-        <FlavourGraph profile={ profile } />
+        <div className="profile">
+          <h4>Flavour Profile</h4>
+          <FlavourGraph profile={ profile } />
+        </div>
       </div>
     );
   }

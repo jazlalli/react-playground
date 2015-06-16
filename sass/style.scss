@@ -6,9 +6,6 @@
 // NORMALIZE v3.0.0: Normalise across browsers
 @import "shared/_normalize.scss";
 
-// FONTS: @font-face
-@import "shared/_fonts.scss";
-
 // LAYOUT: Base layout, Grid
 @import "shared/_layout.scss";
 
@@ -17,3 +14,9 @@
 
 // ELEMENTS: Links, Buttons, Forms, Lists etc.
 @import "shared/_elements.scss";
+
+// PAGE COMPONENTS
+@import "pages/_home.scss";
+@import "pages/_header.scss";
+@import "pages/_whiskies.scss";
+@import "pages/_regions.scss";

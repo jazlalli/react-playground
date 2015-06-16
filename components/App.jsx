@@ -9,7 +9,7 @@ var App = React.createClass({
 
   render: function () {
     return (
-      <div className="col-1-1">
+      <div>
         <Header />
         <RouteHandler />
       </div>
