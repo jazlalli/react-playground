@@ -1,77 +1,43 @@
 var React = require('react'),
     Router = require('react-router'),
     routes = require('../components/Routes.jsx'),
-
     whiskyController = require('../controllers/whisky'),
     whiskyStore = require('../stores/whiskyStore'),
     regionController = require('../controllers/region'),
     regionStore = require('../stores/regionStore'),
-
     inject = require('../client/inject');
 
+var fetchData = function fetchData(callback) {
+  var data = {};
 
-var whiskyRouteHandler = function (req, res, next) {
   whiskyController.getAll(function (err, result) {
+    console.log('setting whiskies in store');
     whiskyStore._whiskies = result.data;
+    data.whiskies = result.data;
 
-    Router.run(routes, req.path, function (Handler, state) {
-      var html = React.renderToString(<Handler />, null);
+    regionController.getAll(function (err, result) {
+      console.log('setting regions in store');
+      regionStore._regions = result.data;
+      data.regions = result.data;
 
-      inject(html, '/whisky', JSON.stringify(result.data), function (err, response) {
-        if (err) {
-          return res.send({status: 500, message: err.message});
-        }
-
-        res.send(response);
-      });
+      callback(null, data);
     });
   });
-};
-
-var regionRouteHandler = function (req, res, next) {
-  regionController.getAll(function (err, result) {
-    regionStore._regions = result.data;
-
-    Router.run(routes, req.path, function (Handler, state) {
-      var html = React.renderToString(<Handler />, null);
-
-      inject(html, '/region', JSON.stringify(result.data), function (err, response) {
-        if (err) {
-          return res.send({status: 500, message: err.message});
-        }
-
-        res.send(response);
-      });
-    });
-  });
-};
-
+}
 
 var routeHandler = function routeHandler(req, res, next) {
-  // TODO: maybe try to use req.path and req.method to create appropriate action
+  Router.run(routes, req.path, function (Handler, state) {
 
-  console.log('im here', req.path);
+    fetchData(function (err, data) {
+      if (err) {
+        return res.send(err);
+      }
 
-  switch (req.path) {
-    case '/whisky':
-      whiskyRouteHandler(req, res, next);
-      break;
-    case '/region':
-      regionRouteHandler(req, res, next);
-      break;
-    default:
-      Router.run(routes, req.path, function (Handler, state) {
-        var html = React.renderToString(<Handler />, null);
-
-        inject(html, '', '', function (err, response) {
-          if (err) {
-            return res.send({status: 500, message: err.message});
-          }
-
-          res.send(response);
-        });
-      });
-  }
+      var html = React.renderToString(<Handler />, null);
+      html = inject(html, data);
+      res.send(html);
+    });
+  });
 }
 
 module.exports = function (router) {

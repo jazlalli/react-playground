@@ -1,24 +1,19 @@
 var fs = require('fs');
 var response = '';
 
-module.exports = function (contentString, path, dataString, callback) {
+var html = fs.readFileSync(__dirname + '/app.html', {encoding: 'utf8'});
 
-  fs.readFile(__dirname + '/app.html', function (err, html) {
-    if (err) {
-      return callback(err);
+module.exports = function (content, data) {
+  var keyRegex;
+
+  html = html.replace(/#content/ig, content);
+
+  for (var key in data) {
+    if (data.hasOwnProperty(key)) {
+      keyRegex = new RegExp('\'#' + key + '\'', 'ig');
+      html = html.replace(keyRegex, JSON.stringify(data[key]));
     }
+  }
 
-    response = html.toString();
-    response = response.replace(/#content/ig, contentString);
-
-    if (path === '/whisky') {
-      response = response.replace(/\'#whiskies\'/ig, dataString);
-    }
-
-    if (path === '/region') {
-      response = response.replace(/\'#regions\'/ig, dataString);
-    }
-
-    callback(null, response);
-  });
+  return html;
 };

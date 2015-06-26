@@ -13,7 +13,7 @@ var WhiskyDetail = React.createClass({
 
   render: function () {
     var params = this.context.router.getCurrentParams();
-    var whisky = whiskyStore.get(params.whisky);
+    var whisky = whiskyStore.get(decodeURIComponent(params.whisky));
 
     var flavourKeys = [
       'sweetness',

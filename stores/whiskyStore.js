@@ -5,6 +5,7 @@ var EventEmitter = require('eventemitter').EventEmitter;
 var whiskies = [];
 
 if (typeof window !== 'undefined') {
+  console.log('getting whiskies from window');
   whiskies = window.whiskies;
 }
 

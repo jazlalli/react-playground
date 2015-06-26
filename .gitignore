@@ -31,7 +31,9 @@ node_modules
 **/.sass-cache/*
 
 # built output
-public
+public/**/*.css
+public/**/*.css.map
+public/**/*.js
 
 # data files
 flavours.json
