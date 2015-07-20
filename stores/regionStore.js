@@ -5,7 +5,6 @@ var EventEmitter = require('eventemitter').EventEmitter;
 var regions = [];
 
 if (typeof window !== 'undefined') {
-  console.log('getting regions from window');
   regions = window.regions;
 }
 
@@ -14,7 +13,9 @@ var regionStore = assign({}, EventEmitter.prototype, {
   _regions: regions,
 
   getAll: function getAll() {
-    return this._regions;
+    return this._regions.sort(function (a, b) {
+      return a.toLowerCase().localeCompare(b.toLowerCase());
+    });
   },
 
   get: function get(name) {
