@@ -5,6 +5,7 @@ var EventEmitter = require('eventemitter').EventEmitter;
 var regions = [];
 
 if (typeof window !== 'undefined') {
+  console.log('getting regions from window');
   regions = window.regions;
 }
 

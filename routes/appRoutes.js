@@ -1,5 +1,6 @@
 var React = require('react'),
     Router = require('react-router'),
+    async = require('async'),
     routes = require('../components/Routes.jsx'),
     whiskyController = require('../controllers/whisky'),
     whiskyStore = require('../stores/whiskyStore'),
@@ -7,39 +8,45 @@ var React = require('react'),
     regionStore = require('../stores/regionStore'),
     inject = require('../client/inject');
 
-var fetchData = function fetchData(callback) {
-  var data = {};
-
-  whiskyController.getAll(function (err, result) {
-    console.log('setting whiskies in store');
-    whiskyStore._whiskies = result.data;
-    data.whiskies = result.data;
-
-    regionController.getAll(function (err, result) {
-      console.log('setting regions in store');
-      regionStore._regions = result.data;
-      data.regions = result.data;
-
-      callback(null, data);
-    });
-  });
-}
-
 var routeHandler = function routeHandler(req, res, next) {
   Router.run(routes, req.path, function (Handler, state) {
+    async.parallel([
+      function (cb) {
+        whiskyController.getAll(function (err, result) {
+          if (err) return cb(err);
 
-    fetchData(function (err, data) {
+          whiskyStore._whiskies = result.data;
+          return cb(null, result.data);
+        });
+      },
+
+      function (cb) {
+        regionController.getAll(function (err, result) {
+          if (err) return cb(err);
+
+          regionStore._regions = result.data;
+          return cb(null, result.data);
+        });
+      }
+    ], function (err, result) {
       if (err) {
         return res.send(err);
       }
 
-      var html = React.renderToString(<Handler />, null);
-      html = inject(html, data);
-      res.send(html);
+      var content = React.renderToString(<Handler />, null);
+      var data = {
+        whiskies: result[0],
+        regions: result[1]
+      }
+
+      var html = inject(content, data);
+      res.end(html);
     });
   });
-}
+
+};
 
 module.exports = function (router) {
   router.route('/*').get(routeHandler);
+  return router;
 }

@@ -11,12 +11,10 @@ app.use(bodyParser.json());
 app.use(serveStatic(__dirname + '/public'));
 app.use(morgan('tiny'));
 
-var apiRouter = express.Router();
-require('./routes/apiRoutes')(apiRouter);
+var apiRouter = require('./routes/apiRoutes')(express.Router());
 app.use('/api', apiRouter);
 
-var appRouter = express.Router();
-require('./routes/appRoutes')(appRouter);
-app.use(appRouter);
+var appRouter = require('./routes/appRoutes')(express.Router());
+app.use('/', appRouter);
 
 module.exports = app;

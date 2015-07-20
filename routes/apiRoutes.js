@@ -65,4 +65,6 @@ module.exports = function (router) {
         res.json(result);
       });
     });
+
+  return router;
 };
