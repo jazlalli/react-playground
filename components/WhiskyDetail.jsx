@@ -4,6 +4,7 @@ var React = require('react');
 var FlavourGraph = require('./FlavourGraph.jsx');
 
 var whiskyStore = require('../stores/whiskyStore');
+var flavourStore = require('../stores/flavourStore');
 
 var WhiskyDetail = React.createClass({
 
@@ -11,29 +12,18 @@ var WhiskyDetail = React.createClass({
     router: React.PropTypes.func.isRequired
   },
 
+  getInitialState: function () {
+    return {flavours: flavourStore.getAll()};
+  },
+
   render: function () {
     var params = this.context.router.getCurrentParams();
     var whisky = whiskyStore.get(decodeURIComponent(params.whisky));
 
-    var flavourKeys = [
-      'sweetness',
-      'fruity',
-      'floral',
-      'body',
-      'smokey',
-      'tobacco',
-      'medicinal',
-      'winey',
-      'spicy',
-      'malty',
-      'nutty',
-      'honey'
-    ];
-
     var profile = {};
 
     if (whisky) {
-      flavourKeys.forEach(function (key) {
+      this.state.flavours.forEach(function (key) {
         profile[key] = whisky[key]
       });
     }

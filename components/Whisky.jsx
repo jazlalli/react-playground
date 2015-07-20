@@ -37,14 +37,17 @@ var Whisky = React.createClass({
     }
 
     return (
-      <section className="whiskies">
-        <div className="col-1-4 list-container">
-          <ul className="main-list">
-            { Whiskies }
-          </ul>
-        </div>
-        <RouteHandler />
-      </section>
+      <div>
+        <Header />
+        <section className="whiskies">
+          <div className="col-1-4 list-container">
+            <ul className="main-list">
+              { Whiskies }
+            </ul>
+          </div>
+          <RouteHandler />
+        </section>
+      </div>
     );
   }
 });

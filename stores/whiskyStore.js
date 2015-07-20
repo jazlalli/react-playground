@@ -1,4 +1,3 @@
-var db = require('../data/db');
 var assign = require('object-assign');
 var EventEmitter = require('eventemitter').EventEmitter;
 
