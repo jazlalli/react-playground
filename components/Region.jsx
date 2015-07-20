@@ -37,14 +37,17 @@ var Region = React.createClass({
     }
 
     return (
-      <section className="regions">
-        <div className="col-1-4 list-container">
-          <ul className="main-list">
-            { Regions }
-          </ul>
-        </div>
-        <RouteHandler />
-      </section>
+      <div>
+        <Header />
+        <section className="regions">
+          <div className="col-1-4 list-container">
+            <ul className="main-list">
+              { Regions }
+            </ul>
+          </div>
+          <RouteHandler />
+        </section>
+      </div>
     );
   }
 });

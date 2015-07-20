@@ -20,6 +20,7 @@
     "chart.js": "^1.0.2",
     "eventemitter": "^0.3.3",
     "express": "^4.12.3",
+    "flux": "^2.0.3",
     "jsdom": "^3.1.2",
     "jsx": "^0.9.89",
     "morgan": "^1.5.2",
@@ -40,7 +41,7 @@
     "build-js": "mkdir -p public/js/ && browserify components/Routes.jsx -t reactify -o public/js/bundle.js",
     "build-sass": "mkdir -p public/css/ && sass sass/style.scss > public/css/style.css",
     "build": "npm run build-js && npm run build-sass",
-    "watch-js": "watchify components/Routes.jsx -t reactify -o public/js/bundle.js -v",
+    "watch-js": "watchify components/Routes.jsx -t reactify -o public/js/bundle.js",
     "watch-sass": "sass --watch sass:public/css",
     "watch": "npm run build && parallelshell 'npm run watch-js' 'npm run watch-sass'",
     "start": "nodemon index.js"

@@ -21,6 +21,10 @@ var whiskyStore = assign({}, EventEmitter.prototype, {
     return this._whiskies.filter(function (item, idx) {
       return item.name.toLowerCase() === name;
     })[0];
+  },
+
+  getByRegion: function (region) {
+
   }
 
 });

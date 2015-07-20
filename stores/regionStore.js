@@ -19,7 +19,7 @@ var regionStore = assign({}, EventEmitter.prototype, {
 
   get: function get(name) {
     return this._regions.filter(function (item) {
-      return item.toLowerCase() === name;
+      return item.toLowerCase() === name.toLowerCase();
     })[0];
   }
 

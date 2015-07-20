@@ -1,0 +1,5 @@
+module.exports = {
+  INIT: 'INIT',
+  SELECT_WHISKY: 'SELECT_WHISKY',
+  SELECT_REGION: 'SELECT_REGION'
+};
