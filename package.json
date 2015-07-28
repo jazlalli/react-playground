@@ -43,7 +43,7 @@
     "build": "npm run build-js && npm run build-sass",
     "watch-js": "watchify components/Routes.jsx -t reactify -o public/js/bundle.js",
     "watch-sass": "sass --watch sass:public/css",
-    "watch": "npm run build && parallelshell 'npm run watch-js' 'npm run watch-sass'",
+    "watch": "npm run build && parallelshell 'npm run watch-js' 'npm run watch-sass' 'nodemon index.js'",
     "start": "nodemon index.js"
   },
   "author": "Jaz Lalli",

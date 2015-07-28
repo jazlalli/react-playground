@@ -97,11 +97,10 @@ ul.main-list {
   li {
     width: 100%;
 
-    a {
+    span {
       display: block;
       padding: 0 10px;
     }
-
     &:hover, .active {
       background-color: #fff;
     }

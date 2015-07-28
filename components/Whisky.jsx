@@ -3,14 +3,18 @@
 var React = require('react');
 var Router = require('react-router');
 var RouteHandler = Router.RouteHandler;
-var Link = Router.Link;
 
 var Header = require('./Header.jsx');
 var WhiskyDetail = require('./WhiskyDetail.jsx');
 
 var whiskyStore = require('../stores/whiskyStore');
+var compareStore = require('../stores/compareStore');
 
 var Whisky = React.createClass({
+
+  contextTypes: {
+    router: React.PropTypes.func.isRequired
+  },
 
   getInitialState: function () {
     return {whiskies: whiskyStore.getAll()};
@@ -23,14 +27,34 @@ var Whisky = React.createClass({
     }
   },
 
+  onClick: function (whisky) {
+    compareStore.addToCompare(whisky);
+
+    var primary = compareStore.getPrimary();
+    var secondary = compareStore.getSecondary();
+
+    if (secondary) {
+      this.context.router.transitionTo('compare', {
+        primary: primary.name.toLowerCase(),
+        secondary: secondary.name.toLowerCase()
+      });
+
+    } else {
+      this.context.router.transitionTo('whisky', {
+        primary: primary.name.toLowerCase()
+      });
+    }
+  },
+
   render: function () {
+    var self = this;
     var Whiskies = [];
 
     if (this.state.whiskies) {
       this.state.whiskies.forEach(function (w) {
         Whiskies.push(
           <li key={w.name}>
-            <Link to='whisky' params={{whisky: w.name.toLowerCase()}}>{w.name}</Link>
+            <span onClick={self.onClick.bind(self, w)}>{w.name}</span>
           </li>
         );
       });

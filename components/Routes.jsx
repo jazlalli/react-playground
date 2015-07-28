@@ -18,7 +18,8 @@ var routes = (
 
     <Route handler={App}>
       <Route name="whiskies" path="/whisky" handler={Whisky}>
-        <Route name="whisky" path=":whisky" handler={WhiskyDetail} />
+        <Route name="whisky" path=":primary" handler={WhiskyDetail} />
+        <Route name="compare" path=":primary/compare/:secondary" handler={WhiskyDetail} />
       </Route>
 
       <Route name="regions" path="/region" handler={Region}>

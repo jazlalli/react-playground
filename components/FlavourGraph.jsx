@@ -81,25 +81,36 @@ var globalOptions = {
 
 var FlavourGraph = React.createClass({
 
-  propTypes: {
-    profile: React.PropTypes.object
-  },
-
   render: function () {
-    var profile = this.props.profile;
+    var primary = this.props.primary;
+    var secondary = this.props.secondary;
+
+    var datasets = [];
+
+    if (primary) {
+      datasets.push({
+        fillColor : "rgba(234,241,245,0.7)",
+        strokeColor : "rgba(151,187,205,0.8)",
+        data : Object.keys(primary).map(function (key) {
+          return this[key];
+        }.bind(primary))
+      });
+    }
+
+    if (secondary) {
+      datasets.push({
+        fillColor: "rgba(220,220,220,0.2)",
+        strokeColor: "rgba(220,220,220,1)",
+        data : Object.keys(secondary).map(function (key) {
+          return this[key];
+        }.bind(secondary))
+      });
+    }
 
     // Radar Data
     var graphData = {
-      labels: Object.keys(profile),
-      datasets: [
-        {
-          fillColor : "rgba(234,241,245,0.7)",
-          strokeColor : "rgba(151,187,205,0.8)",
-          data : Object.keys(profile).map(function (key) {
-            return this[key];
-          }.bind(profile))
-        }
-      ]
+      labels: Object.keys(primary),
+      datasets: datasets
     };
 
     return (

@@ -5,6 +5,7 @@ var FlavourGraph = require('./FlavourGraph.jsx');
 
 var whiskyStore = require('../stores/whiskyStore');
 var flavourStore = require('../stores/flavourStore');
+var compareStore = require('../stores/compareStore');
 
 var WhiskyDetail = React.createClass({
 
@@ -13,31 +14,56 @@ var WhiskyDetail = React.createClass({
   },
 
   getInitialState: function () {
-    return {flavours: flavourStore.getAll()};
+    var primary = compareStore.getPrimary();
+    var secondary = compareStore.getSecondary();
+
+    return {
+      flavours: flavourStore.getAll(),
+      primary: compareStore.getPrimary(),
+      secondary: compareStore.getSecondary()
+    };
+  },
+
+  onCompareChanged: function onCompareChanged() {
+    this.setState({
+      primary: compareStore.getPrimary(),
+      secondary: compareStore.getSecondary()
+    });
+  },
+
+  componentWillMount: function componentWillMount() {
+    compareStore.on('CHANGED', this.onCompareChanged);
   },
 
   render: function () {
-    var params = this.context.router.getCurrentParams();
-    var whisky = whiskyStore.get(decodeURIComponent(params.whisky));
+    var primary = this.state.primary;
+    var secondary = this.state.secondary;
 
-    var profile = {};
+    var primaryProfile = {},
+        secondaryProfile = {};
 
-    if (whisky) {
+    if (primary) {
       this.state.flavours.forEach(function (key) {
-        profile[key] = whisky[key]
+        primaryProfile[key] = primary[key];
+      });
+    }
+
+    if (secondary) {
+      this.state.flavours.forEach(function (key) {
+        secondaryProfile[key] = secondary[key];
       });
     }
 
     return (
       <div className="col-2-3 detail-container">
         <div className="content">
-          <h3>{ whisky.name }</h3>
-          <p>{ whisky.description }</p>
+          <h3>{ primary.name }</h3>
+          <p>{ primary.description }</p>
         </div>
 
         <div className="profile">
           <h4>Flavour Profile</h4>
-          <FlavourGraph profile={ profile } />
+          <FlavourGraph primary={primaryProfile} secondary={secondaryProfile} />
         </div>
       </div>
     );
