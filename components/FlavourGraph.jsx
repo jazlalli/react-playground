@@ -85,17 +85,13 @@ var FlavourGraph = React.createClass({
     var primary = this.props.primary;
     var secondary = this.props.secondary;
 
-    var datasets = [];
-
-    if (primary) {
-      datasets.push({
-        fillColor : "rgba(234,241,245,0.7)",
-        strokeColor : "rgba(151,187,205,0.8)",
-        data : Object.keys(primary).map(function (key) {
-          return this[key];
-        }.bind(primary))
-      });
-    }
+    var datasets = [{
+      fillColor : "rgba(234,241,245,0.7)",
+      strokeColor : "rgba(151,187,205,0.8)",
+      data : Object.keys(primary).map(function (key) {
+        return this[key];
+      }.bind(primary))
+    }];
 
     if (secondary) {
       datasets.push({
