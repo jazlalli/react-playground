@@ -30,7 +30,7 @@ var globalOptions = {
   //String - Scale label font declaration for the scale label
   scaleFontFamily : "'adobe-caslon-pro'",
   //Number - Scale label font size in pixels
-  scaleFontSize : 12,
+  scaleFontSize : 16,
   //String - Scale label font weight style
   scaleFontStyle : "normal",
   //String - Scale label font colour
@@ -54,9 +54,7 @@ var globalOptions = {
   //String - Point label font weight
   pointLabelFontStyle : "normal",
   //Number - Point label font size in pixels
-  // pointLabelFontSize : 16,
-  //String - Point label font colour
-  pointLabelFontColor : "#555",
+  pointLabelFontSize : 16,
   //Boolean - Whether to show a dot for each point
   pointDot : true,
   //Number - Radius of each point dot in pixels
@@ -86,17 +84,21 @@ var FlavourGraph = React.createClass({
     var secondary = this.props.secondary;
 
     var datasets = [{
-      fillColor : "rgba(234,241,245,0.7)",
-      strokeColor : "rgba(151,187,205,0.8)",
+      name: primary.name,
+      fillColor : "rgba(140,18,176,0.2)",
+      strokeColor : "rgba(110,14,138,0.8)",
       data : Object.keys(primary).map(function (key) {
         return this[key];
       }.bind(primary))
     }];
 
     if (secondary) {
+      if (datasets.length === 2) datasets.pop();
+
       datasets.push({
-        fillColor: "rgba(220,220,220,0.2)",
-        strokeColor: "rgba(220,220,220,1)",
+        name: secondary.name,
+        fillColor: "rgba(255,152,13,0.3)",
+        strokeColor: "rgba(207,123,0,0.9)",
         data : Object.keys(secondary).map(function (key) {
           return this[key];
         }.bind(secondary))

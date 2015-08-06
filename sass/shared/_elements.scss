@@ -92,17 +92,23 @@ ul.main-list {
   position: relative;
   width: 100%;
   line-height: 2.5em;
-  background-color: #eee;
+  background-color: #F6F6E9;
 
   li {
     width: 100%;
 
+    &.active {
+      background-color: #f9f9f6;
+    }
+
     span {
       display: block;
       padding: 0 10px;
-    }
-    &:hover, .active {
-      background-color: #fff;
+
+      &:hover {
+        background-color: #f9f9f6;
+        cursor: pointer;
+      }
     }
   }
 }

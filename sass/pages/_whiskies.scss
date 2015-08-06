@@ -3,6 +3,7 @@ section.whiskies {
 }
 
 .detail-container {
+  padding-top: 40px;
   margin-left: 28%;
 
   .content {
@@ -11,6 +12,9 @@ section.whiskies {
   }
 
   .profile {
+    padding-top: 20px;
+    border-top: 1px #ddd solid;
+
     .profile-chart-container {
       width: 100%;
       height: 500px;

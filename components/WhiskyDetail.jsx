@@ -57,12 +57,12 @@ var WhiskyDetail = React.createClass({
     return (
       <div className="col-2-3 detail-container">
         <div className="content">
-          <h3>{ primary.name }</h3>
+          <h2>{ primary.name }</h2>
           <p>{ primary.description }</p>
         </div>
 
         <div className="profile">
-          <h4>Flavour Profile</h4>
+          <h3>Flavour Profile</h3>
           <FlavourGraph primary={primaryProfile} secondary={secondaryProfile} />
         </div>
       </div>

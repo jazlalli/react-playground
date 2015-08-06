@@ -48,12 +48,20 @@ var Whisky = React.createClass({
 
   render: function () {
     var self = this;
+    var primary = compareStore.getPrimary();
+    var active = '';
     var Whiskies = [];
 
     if (this.state.whiskies) {
       this.state.whiskies.forEach(function (w) {
+        if (primary && primary.name.toLowerCase() === w.name.toLowerCase()) {
+          active = 'active';
+        } else {
+          active = '';
+        }
+
         Whiskies.push(
-          <li key={w.name}>
+          <li key={w.name} className={active}>
             <span onClick={self.onClick.bind(self, w)}>{w.name}</span>
           </li>
         );
